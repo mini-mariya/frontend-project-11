@@ -1,0 +1,29 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/mini-mariya/frontend-project-11/workflows/hexlet-check/badge.svg)](https://github.com/mini-mariya/frontend-project-11/actions)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mini-mariya/frontend-project-11.git"
+  },
+  "author": "Mariya Zyryanova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mini-mariya/frontend-project-11/issues"
+  },
+  "homepage": "https://github.com/mini-mariya/frontend-project-11#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^27.0.4",
+    "jest": "^29.1.2"
+  }
+}
