@@ -1,16 +1,18 @@
-plugins:
-  - jest
 env:
+  browser: true
   es2021: true
-  node: true
+
+root: true
+
 extends:
-  - "airbnb-base"
-  - "plugin:jest/recommended"
+  - 'eslint:recommended'
+  - airbnb-base
+
 parserOptions:
-  ecmaVersion: 13
+  ecmaVersion: latest
   sourceType: module
-rules: {
-  no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }],
-  no-console: 0,
-  import/extensions: 0,
-}
+
+rules:
+  no-console: 0
+  import/extensions: [error, ignorePackages, { js: always }]
+  no-param-reassign: 0
