@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const config = {
   entry: './src/index.js',
@@ -15,6 +17,10 @@ const config = {
     new HtmlWebpackPlugin({
       template: 'index.html',
     }),
+    new MiniCssExtractPlugin({
+      filename: 'styles.css',
+    }),
+    new CleanWebpackPlugin(),
   ],
   module: {
     rules: [
