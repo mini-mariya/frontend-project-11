@@ -22,9 +22,10 @@ const config = {
   ],
   module: {
     rules: [
+      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'] },
       {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
       },
     ],
   },
