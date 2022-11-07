@@ -88,14 +88,7 @@ export default () => {
       return getNewPosts;
     });
 
-    Promise.all(promise)
-      .catch((err) => {
-        watchedState.form.process = 'failed';
-        watchedState.form.errors = err.name;
-      })
-      .finally(() => {
-        setTimeout(update, delay);
-      });
+    Promise.all(promise).finally(() => { setTimeout(update, delay); });
   };
 
   elements.form.addEventListener('submit', (e) => {
@@ -108,26 +101,23 @@ export default () => {
 
     validate(url, watchedState.links)
       .then((validUrl) => {
-        axios.get(getUrl(validUrl))
-          .then((response) => {
-            const { feed, posts } = parser(response.data.contents);
+        const rssNews = axios.get(getUrl(validUrl));
+        return rssNews;
+      })
+      .then((response) => {
+        const { feed, posts } = parser(response.data.contents);
 
-            watchedState.links.push(validUrl);
-            watchedState.form.process = 'success';
+        watchedState.links.push(url);
+        watchedState.form.process = 'success';
 
-            const id = _.uniqueId();
-            watchedState.feeds.push({ ...feed, id, link: validUrl });
+        const id = _.uniqueId();
+        watchedState.feeds.push({ ...feed, id, link: url });
 
-            posts.forEach((post) => watchedState.posts.push({ ...post, id }));
-          })
-          .catch((err) => {
-            watchedState.form.process = 'failed';
-            watchedState.form.errors = err.name;
-          });
+        posts.forEach((post) => watchedState.posts.push({ ...post, id }));
       })
       .catch((err) => {
         watchedState.form.process = 'failed';
-        watchedState.form.errors = err.errors.join();
+        watchedState.form.errors = err.name;
       });
   });
 
