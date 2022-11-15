@@ -117,7 +117,7 @@ export default () => {
       })
       .catch((err) => {
         watchedState.form.process = 'failed';
-        watchedState.form.errors = err.name;
+        watchedState.form.errors = err.errors.join();
       });
   });
 
