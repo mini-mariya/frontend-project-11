@@ -70,7 +70,7 @@ export default () => {
   const update = () => {
     const { feeds, posts } = state;
 
-    const promise = feeds.map((feed) => {
+    const promises = feeds.map((feed) => {
       const url = getUrl(feed.link);
 
       const getNewPosts = axios.get(url).then((response) => {
@@ -88,7 +88,7 @@ export default () => {
       return getNewPosts;
     });
 
-    Promise.all(promise).finally(() => { setTimeout(update, delay); });
+    Promise.all(promises).finally(() => { setTimeout(update, delay); });
   };
 
   elements.form.addEventListener('submit', (e) => {
@@ -123,11 +123,11 @@ export default () => {
 
   elements.posts.addEventListener('click', (e) => {
     const currentLink = e.target.href ?? e.target.previousElementSibling.href;
-    const currentPost = state.posts.find((item) => item.link === currentLink);
-    watchedState.currentPosts = currentPost;
+    const indexOfPost = state.posts.findIndex((item) => item.link === currentLink);
+    watchedState.currentPosts = indexOfPost;
 
-    if (!state.alreadyReadPosts.includes(currentPost)) {
-      state.alreadyReadPosts.push(currentPost);
+    if (!state.alreadyReadPosts.includes(state.posts[indexOfPost])) {
+      state.alreadyReadPosts.push(state.posts[indexOfPost]);
     }
   });
 
