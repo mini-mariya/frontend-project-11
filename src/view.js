@@ -26,10 +26,10 @@ const renderFeeds = (elements, i18n, value) => {
   feeds.append(li, a);
 };
 
-const renderModalWindow = (elements, currentPost) => {
+const renderModalWindow = (elements, state, indexOfPost) => {
   const { modalTitle, body, redirect } = elements;
   const titles = elements.posts.querySelectorAll('a');
-
+  const currentPost = state.posts[indexOfPost];
   titles.forEach((title) => {
     if (title.href !== currentPost.link) {
       return;
@@ -181,7 +181,7 @@ export default (elements, i18n, state) => {
         break;
 
       case 'currentPosts':
-        renderModalWindow(elements, value);
+        renderModalWindow(elements, state, value);
         break;
 
       default:
